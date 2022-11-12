@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const url = 'http://127.0.0.1:8080/shifts';
 // const url = "https://reactnative.dev/movies.json"
 
-const ShiftScreen = ({navigation}) => {
+const ShiftScreen = () => {
   const [shifts, setShifts] = useState([]);
   useEffect(() => {
     const getMoviesFromApi = async () => {
@@ -40,12 +40,7 @@ const ShiftScreen = ({navigation}) => {
 
     </View>
     <View style={styles.footerContainer}>
-          <TouchableOpacity style = {{flex : 1}} onPress={() => navigation.navigate('Details')}>
-            <Text style = {styles.footer}>MyShift</Text>
-          </TouchableOpacity>
-          <TouchableOpacity  style = {{flex : 1}} onPress={() => navigation.navigate('Home')}>
-            <Text style = {styles.footer}>MyShift</Text>
-          </TouchableOpacity>
+         
         </View>
     </ScrollView>
     </SafeAreaView>

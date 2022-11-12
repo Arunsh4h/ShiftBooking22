@@ -4,7 +4,7 @@ import ShiftScreen from "../screens/ShiftScreen";
 import { Colors } from "../constants/Colors"
 
 
-export default function AvailableScreen({ navigation }) {
+export default function AvailableScreen() {
   return (
     <SafeAreaView style={styles.backgroundStyle}>
         <StatusBar />
@@ -17,12 +17,7 @@ export default function AvailableScreen({ navigation }) {
           </View>
         </ScrollView>
         <View style={styles.footerContainer}>
-          <TouchableOpacity style = {{flex : 1}} onPress={() => navigation.navigate('Details')}>
-            <Text style = {styles.footer}>MyShift</Text>
-          </TouchableOpacity>
-          <TouchableOpacity  style = {{flex : 1}} onPress={() => navigation.navigate('Home')}>
-            <Text style = {styles.footer}>MyShift</Text>
-          </TouchableOpacity>
+          
         </View>
       </SafeAreaView>
   );

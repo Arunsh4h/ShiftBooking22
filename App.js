@@ -17,13 +17,9 @@ import {
   Text,
   Button,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import Routes from "./Routes";
 import { Colors } from "./constants/Colors";
-import ShiftScreen from "./screens/ShiftScreen";
-import AvailableScreen from "./screens/AvailableScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,14 +30,7 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={AvailableScreen} />
-        <Stack.Screen name="Details" component={ShiftScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  return <Routes />;
 };
 
 const styles = StyleSheet.create({
