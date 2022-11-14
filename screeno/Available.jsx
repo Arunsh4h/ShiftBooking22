@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import ButtonBox from "../components/ButtonBox";
-import TabBar from "../components/TabBar";
+
+import AvailableScreen from "../screens/AvailableScreen";
 
 export default function Available({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
-      <View>
-        <TabBar />
-      </View>
+      <AvailableScreen />
+
+      <View></View>
 
       <View style={styles.row}>
         <ButtonBox
