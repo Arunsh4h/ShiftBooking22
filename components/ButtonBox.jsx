@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: "48%",
     zIndex: 10,
+    paddingBottom: 40,
   },
   textBaseColor: {
     color: "#9a9b9b",

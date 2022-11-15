@@ -100,7 +100,12 @@ export default function AvailableScreen() {
           <Heading title={"Today"} />
           {CurrentData?.map((e, i) => (
             <Fragment key={i}>
-              <Shift from={e.startTime} to={e.endTime} desc={e.area} />
+              <Shift
+                from={e.startTime}
+                to={e.endTime}
+                desc={e.area}
+                status={e.booked}
+              />
             </Fragment>
           ))}
         </View>

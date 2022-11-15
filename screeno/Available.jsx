@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     position: "absolute",
     width: "100%",
-    bottom: 80,
-    justifyContent: "center",
+    bottom: 0,
+    justifyContent: "space-evenly",
+    backgroundColor: "#fafafb",
   },
 });
