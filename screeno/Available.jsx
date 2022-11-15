@@ -14,11 +14,11 @@ export default function Available({ navigation }) {
       <View style={styles.row}>
         <ButtonBox
           title="My shifts"
-          onPress={() => navigation.navigate("Available")}
+          onPress={() => navigation.navigate("Shift")}
         />
         <ButtonBox
           title="Available Shifts"
-          onPress={() => navigation.navigate("Shift")}
+          onPress={() => navigation.navigate("Available")}
         />
       </View>
     </View>
