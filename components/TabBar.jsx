@@ -1,15 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { Fragment } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const TabBar = ({ tabAttributes }) => {
+const TabBar = ({ tabAttributes, setTab }) => {
   return (
     <View style={styles.container}>
       {tabAttributes.map((e, i) => (
-        <View>
-          <Text style={styles.tabText}>
-            {e.name} ({e.count})
-          </Text>
-        </View>
+        <Fragment key={i}>
+          <TouchableOpacity
+            onPress={() => {
+              setTab(e.name);
+            }}
+          >
+            <Text style={styles.tabText}>
+              {e.name} ({e.count})
+            </Text>
+          </TouchableOpacity>
+        </Fragment>
       ))}
     </View>
   );

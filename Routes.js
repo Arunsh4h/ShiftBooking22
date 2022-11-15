@@ -10,12 +10,12 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen options={headerOptions} name="Shift" component={Shift} />
         <Stack.Screen
           options={headerOptions}
           name="Available"
           component={Available}
         />
-        <Stack.Screen options={headerOptions} name="Shift" component={Shift} />
       </Stack.Navigator>
     </NavigationContainer>
   );

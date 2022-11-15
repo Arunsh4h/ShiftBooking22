@@ -6,6 +6,7 @@ import ShiftScreen from "../screens/ShiftScreen";
 export default function Shift({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
+      <ShiftScreen />
       <Text>Shift</Text>
       <View style={styles.row}>
         <ButtonBox
@@ -17,8 +18,6 @@ export default function Shift({ navigation }) {
           onPress={() => navigation.navigate("Available")}
         />
       </View>
-
-      <ShiftScreen />
     </View>
   );
 }
