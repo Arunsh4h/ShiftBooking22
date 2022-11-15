@@ -6,7 +6,7 @@ import ShiftScreen from "../screens/ShiftScreen";
 export default function Shift({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
-      <ShiftScreen />
+      <ShiftScreen navigation={navigation} />
       <Text>Shift</Text>
       <View style={styles.row}>
         <ButtonBox

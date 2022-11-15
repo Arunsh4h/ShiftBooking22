@@ -11,21 +11,22 @@ import Heading from "../components/Heading";
 import Shift from "../components/Shift";
 import axios from "axios";
 import { Colors } from "../constants/Colors";
-
+import { useIsFocused } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 const url = "http://127.0.0.1:8080/shifts";
 // const url = "https://reactnative.dev/movies.json"
 
-const ShiftScreen = () => {
+const ShiftScreen = ({ navigation }) => {
   const [shifts, setShifts] = useState([]);
   useEffect(() => {
     const getMoviesFromApi = async () => {
       const res = await axios.get(url);
-      setShifts(res.data);
+      const bookedShift = res.data.filter((e) => e.booked);
+      setShifts(bookedShift);
     };
 
     getMoviesFromApi();
-  }, []);
+  }, [useIsFocused]);
 
   return (
     <SafeAreaView style={styles.backgroundStyle}>

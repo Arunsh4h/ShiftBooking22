@@ -1,9 +1,36 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Colors } from "../constants/Colors";
-import { convertMsToTime } from "../utils/helper";
+import { bookShift, cancelShift, convertMsToTime } from "../utils/helper";
+import axios from "axios";
 
-const Shift = ({ from, to, desc, status }) => {
+const currentTime = Date.now();
+
+const Shift = ({ from, to, desc, status, id, setShiftInteraction }) => {
+  const [shiftStatus, setShiftStatus] = useState(status);
+  const handleBooking = async () => {
+    if (!shiftStatus) {
+      bookShift(id)
+        .then((res) => {
+          let data = res.data;
+          setShiftStatus(!shiftStatus);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // const res = await cancelShift(id, setShiftInteraction)
+    } else {
+      cancelShift(id)
+        .then((res) => {
+          let data = res.data;
+          console.log(data);
+          setShiftStatus(!shiftStatus);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.info}>
@@ -20,28 +47,30 @@ const Shift = ({ from, to, desc, status }) => {
         <Text
           style={{
             ...styles.statusText,
-            color: status ? "#4F6C92" : "#E2006A",
+            color: shiftStatus ? "#4F6C92" : "#E2006A",
           }}
         >
-          {status && "Booked"}
+          {Date.now() > from ? "Overlapped" : shiftStatus && "Booked"}
         </Text>
       </View>
       <View>
         <TouchableOpacity
           style={{
             ...styles.cancelBtn,
-            borderColor: status ? "#E2006A" : "#A4B8D3",
+            borderColor: shiftStatus ? "#E2006A" : "#A4B8D3",
           }}
-          onPress={() => {}}
+          onPress={() => {
+            handleBooking();
+          }}
         >
           <Text
             style={{
               ...styles.cancelBtnTxt,
 
-              color: status ? "#E2006A" : "#A4B8D3",
+              color: shiftStatus ? "#E2006A" : "#A4B8D3",
             }}
           >
-            {status ? "Cancel" : "Book"}
+            {shiftStatus ? "Cancel" : "Book"}
           </Text>
         </TouchableOpacity>
       </View>

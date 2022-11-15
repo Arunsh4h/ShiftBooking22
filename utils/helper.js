@@ -1,5 +1,7 @@
+import axios from "axios";
+
 function padTo2Digits(num) {
-  return num.toString().padStart(2, '0');
+  return num.toString().padStart(2, "0");
 }
 
 export function convertMsToTime(milliseconds) {
@@ -18,3 +20,26 @@ export function convertMsToTime(milliseconds) {
 
   return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}`;
 }
+
+export const bookShift = async (shiftId) => {
+  return axios.post(`http://127.0.0.1:8080/shifts/${shiftId}/book`);
+  // try {
+  //   const res = await axios.post(
+  //     `http://127.0.0.1:8080/shifts/${shiftId}/book`
+  //   );
+  //   if(res.status)
+  // } catch (e) {
+  //   console.log("from booking", e);
+  // }
+};
+
+export const cancelShift = async (shiftId) => {
+  return await axios.post(`http://127.0.0.1:8080/shifts/${shiftId}/cancel`);
+  // try {
+  //   const res = await axios.post(
+  //     `http://127.0.0.1:8080/shifts/${shiftId}/cancel`
+  //   );
+  // } catch (e) {
+  //   console.log("from cancelling", e);
+  // }
+};

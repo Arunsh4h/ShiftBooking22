@@ -28,6 +28,7 @@ export default function AvailableScreen() {
   const [Turku, setTurku] = useState([]);
   const [Tampere, setTampere] = useState([]);
   const [Area, setArea] = useState(HelsinkiArea);
+  const [shiftInteraction, setShiftInteraction] = useState("");
 
   const [CurrentData, setCurrentData] = useState([]);
 
@@ -105,6 +106,8 @@ export default function AvailableScreen() {
                 to={e.endTime}
                 desc={e.area}
                 status={e.booked}
+                id={e.id}
+                setShiftInteraction={setShiftInteraction}
               />
             </Fragment>
           ))}
