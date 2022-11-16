@@ -23,6 +23,7 @@ const TurkuArea = "Turku";
 const TampereArea = "Tampere";
 
 export default function AvailableScreen() {
+  const [isActionTriggered, setIsActionTriggered] = useState(false);
   const [Availabledata, setAvailabledata] = useState([]);
   const [Helsinki, setHelsinki] = useState([]);
   const [Turku, setTurku] = useState([]);
@@ -102,12 +103,14 @@ export default function AvailableScreen() {
           {CurrentData?.map((e, i) => (
             <Fragment key={i}>
               <Shift
+                setIsActionTriggered={() =>
+                  setIsActionTriggered((prev) => !prev)
+                }
                 from={e.startTime}
                 to={e.endTime}
                 desc={e.area}
                 status={e.booked}
                 id={e.id}
-                setShiftInteraction={setShiftInteraction}
               />
             </Fragment>
           ))}

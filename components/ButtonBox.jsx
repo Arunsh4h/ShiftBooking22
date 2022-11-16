@@ -1,10 +1,17 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import React from "react";
 
-export default function ButtonBox({ onPress, title }) {
+export default function ButtonBox({ onPress, title, isActive }) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={styles.textBaseColor}>{title}</Text>
+      <Text
+        style={{
+          ...styles.textBaseColor,
+          color: !isActive ? "#9a9b9b" : "blue",
+        }}
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -18,7 +25,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   textBaseColor: {
-    color: "#9a9b9b",
     fontWeight: "bold",
     fontSize: 19,
     alignSelf: "center",

@@ -1,12 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Colors } from "../constants/Colors";
+
 import { bookShift, cancelShift, convertMsToTime } from "../utils/helper";
 import axios from "axios";
 
 const currentTime = Date.now();
 
-const Shift = ({ from, to, desc, status, id, setShiftInteraction }) => {
+const Shift = ({ from, to, desc, status, id, setIsActionTriggered }) => {
   const [shiftStatus, setShiftStatus] = useState(status);
   const handleBooking = async () => {
     if (!shiftStatus) {
@@ -23,7 +24,6 @@ const Shift = ({ from, to, desc, status, id, setShiftInteraction }) => {
       cancelShift(id)
         .then((res) => {
           let data = res.data;
-          console.log(data);
           setShiftStatus(!shiftStatus);
         })
         .catch((err) => {
@@ -31,6 +31,12 @@ const Shift = ({ from, to, desc, status, id, setShiftInteraction }) => {
         });
     }
   };
+  useEffect(() => {
+    setIsActionTriggered();
+  }, [shiftStatus]);
+  useEffect(() => {
+    console.log(status);
+  }, [shiftStatus]);
   return (
     <View style={styles.container}>
       <View style={styles.info}>

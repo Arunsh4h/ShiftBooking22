@@ -11,22 +11,25 @@ import Heading from "../components/Heading";
 import Shift from "../components/Shift";
 import axios from "axios";
 import { Colors } from "../constants/Colors";
+import { useRoute } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 const url = "http://127.0.0.1:8080/shifts";
 // const url = "https://reactnative.dev/movies.json"
+const getMoviesFromApi = async (setShifts) => {
+  const res = await axios.get(url);
+  const bookedShift = res.data.filter((e) => e.booked);
+
+  setShifts([...bookedShift]);
+};
 
 const ShiftScreen = ({ navigation }) => {
   const [shifts, setShifts] = useState([]);
+  const [isActionTriggered, setIsActionTriggered] = useState(false);
   useEffect(() => {
-    const getMoviesFromApi = async () => {
-      const res = await axios.get(url);
-      const bookedShift = res.data.filter((e) => e.booked);
-      setShifts(bookedShift);
-    };
-
-    getMoviesFromApi();
-  }, [useIsFocused]);
+    getMoviesFromApi(setShifts);
+    // console.log(navigation.getId());
+  }, [isActionTriggered]);
 
   return (
     <SafeAreaView style={styles.backgroundStyle}>
@@ -37,7 +40,16 @@ const ShiftScreen = ({ navigation }) => {
 
           {shifts?.map((e, i) => (
             <Fragment key={i}>
-              <Shift desc={e.area} from={e.startTime} to={e.endTime} />
+              <Shift
+                setIsActionTriggered={() =>
+                  setIsActionTriggered((prev) => !prev)
+                }
+                desc={e.area}
+                from={e.startTime}
+                to={e.endTime}
+                status={e.booked}
+                id={e.id}
+              />
             </Fragment>
           ))}
           <Heading title={"Tomorrow"} noOfShift={"2 shifts"} hrs={"4 h"} />
